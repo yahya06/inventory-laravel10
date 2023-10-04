@@ -49,3 +49,9 @@ Route::get('/kategori', [barangController::class, 'category']);
 Route::post('/kategori/store', [barangController::class, 'store_category']);
 Route::post('/kategori/update/{id}', [barangController::class, 'update_category']);
 Route::get('/kategori/destroy/{id}', [barangController::class, 'destroy_category']);
+
+//crud data kelas
+Route::get('/kelas', [barangController::class, 'kelas']);
+Route::post('/kelas/store', [barangController::class, 'store_kelas']);
+Route::post('/kelas/update/{id}', [barangController::class, 'update_kelas']);
+Route::get('/kelas/destroy/{id}', [barangController::class, 'destroy_kelas']);

@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
             $table->integer('id_category');
-            $table->integer('id_kelas');
             $table->string('nama_barang')->nullable();
             $table->integer('stok_min')->nullable();
             $table->enum('satuan', ['Kg','Meter','Gram'])->nullable();
-            $table->bigInteger('harga')->nullable();;
-            $table->integer('stok')->nullable();;
+            $table->bigInteger('harga')->nullable();
+            $table->integer('stok')->nullable();
+            $table->enum('kelas',['A','B','C'])->nullable();
             $table->timestamps();
         });
     }
