@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\barang;
+use App\Models\categoryBarang;
 use Illuminate\Http\Request;
 
 class barangController extends Controller
@@ -11,23 +12,23 @@ class barangController extends Controller
     {
         $data = array(
             'title' => 'Data Category',
-            'dataCategory' => barang::all(),
+            'dataCategory' => categoryBarang::all(),
         );
 
         return view('admin.master.category.category' , $data);
     }
-    public function store(Request $request)
+    public function store_category(Request $request)
     {
-        barang::create([
+        categoryBarang::create([
             'nama_category' => $request->namaCategory,
         ]);
 
         return redirect('kategori')->with('success','data berhasil disimpan');
     }
 
-    public function update(Request $request, $id)
+    public function update_category(Request $request, $id)
     {
-        barang::where('id', $id)
+        categoryBarang::where('id', $id)
         ->where('id', $id)
         ->update([
             'nama_category' => $request->namaCategory,
@@ -36,9 +37,9 @@ class barangController extends Controller
         return redirect('kategori')->with('success','data berhasil diubah');
     }
 
-    public function destroy($id)
+    public function destroy_category($id)
     {
-        barang::where('id', $id)->delete();
+        categoryBarang::where('id', $id)->delete();
         return redirect('kategori')->with('success','data berhasil dihapus');
     }
 }

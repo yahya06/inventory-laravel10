@@ -46,6 +46,6 @@ Route::get('/user/destroy/{id}', [userController::class, 'destroy']);
 
 //crud data kategory
 Route::get('/kategori', [barangController::class, 'category']);
-Route::post('/kategori/store', [barangController::class, 'store']);
-Route::post('/kategori/update/{id}', [barangController::class, 'update']);
-Route::get('/kategori/destroy/{id}', [barangController::class, 'destroy']);
+Route::post('/kategori/store', [barangController::class, 'store_category']);
+Route::post('/kategori/update/{id}', [barangController::class, 'update_category']);
+Route::get('/kategori/destroy/{id}', [barangController::class, 'destroy_category']);
