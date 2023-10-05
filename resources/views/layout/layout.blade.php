@@ -181,9 +181,21 @@
                             <li><a href="/kategori">Data Category</a></li>
                             <li><a href="/kelas">Data Kelas</a></li>
                             <li><a href="/user">Data User</a></li>
-                            <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                            <li><a href="/suplier">Data Suplier</a></li>
                         </ul>
                     </li>
+                    <li class="nav-label">Transaksi</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Tansaksi</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/barangin">Barang Masuk</a></li>
+                            <li><a href="/barangout">Barang Keluar</a></li>
+                            <li><a href="/suplier">Data Suplier</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-label">Laporan</li>
                     @endif
                     
                     
@@ -201,6 +213,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/barang">Data Barang</a></li>
+                            <li><a href="/suplier">Data Suplier</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Transaksi</li>
@@ -209,11 +222,8 @@
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Tansaksi</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="/barang">Data Barang</a></li>
-                            <li><a href="/kateogri">Barang Masuk</a></li>
-                            <li><a href="/kelas">Barang Keluar</a></li>
-                            <li><a href="/user">Data Suplier</a></li>
-                            <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                            <li><a href="/barangin">Barang Masuk</a></li>
+                            <li><a href="/barangout">Barang Keluar</a></li>
                         </ul>
                     </li>
                     @endif

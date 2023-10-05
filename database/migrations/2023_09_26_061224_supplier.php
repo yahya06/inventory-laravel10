@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_supplier')->nullable();
             $table->enum('jenis_supplier', ['kain', 'aksesorie','perkakas'])->nullable();
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }
