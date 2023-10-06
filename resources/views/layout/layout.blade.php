@@ -42,13 +42,28 @@
         ***********************************-->
         <div class="nav-header">
             <div class="brand-logo">
-                <a href="index.html">
+                {{-- manajer --}}
+                @if (Auth::user()->role == 'manajer')
+                <a href="/admin">
                     <b class="logo-abbr"><img src="/assets/images/logo.png" alt=""> </b>
                     <span class="logo-compact"><img src="/assets/images/logo-compact.png" alt=""></span>
                     <span class="brand-title">
                         <img src="/assets/images/logo-text.png" alt="">
                     </span>
                 </a>
+                @endif
+
+                {{-- staff --}}
+                @if (Auth::user()->role == 'manajer')
+                <a href="/admin/staff">
+                    <b class="logo-abbr"><img src="/assets/images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="/assets/images/logo-compact.png" alt=""></span>
+                    <span class="brand-title">
+                        <img src="/assets/images/logo-text.png" alt="">
+                    </span>
+                </a>
+                @endif
+                
             </div>
         </div>
         <!--**********************************
@@ -179,20 +194,18 @@
                         <ul aria-expanded="false">
                             <li><a href="/barang">Data Barang</a></li>
                             <li><a href="/kategori">Data Category</a></li>
-                            <li><a href="/kelas">Data Kelas</a></li>
                             <li><a href="/user">Data User</a></li>
-                            <li><a href="/suplier">Data Suplier</a></li>
+                            <li><a href="/supplyer">Data Suplier</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Transaksi</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Tansaksi</span>
+                            <i class="icon-book-open menu-icon"></i><span class="nav-text">Tansaksi</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/barangin">Barang Masuk</a></li>
                             <li><a href="/barangout">Barang Keluar</a></li>
-                            <li><a href="/suplier">Data Suplier</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Laporan</li>
@@ -213,13 +226,13 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/barang">Data Barang</a></li>
-                            <li><a href="/suplier">Data Suplier</a></li>
+                            <li><a href="/supplyer">Data Suplier</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Transaksi</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Tansaksi</span>
+                            <i class="icon-book-open menu-icon"></i><span class="nav-text">Tansaksi</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/barangin">Barang Masuk</a></li>

@@ -12,12 +12,12 @@ class barang extends Model
     
     protected $fillable = [
         'id_category',
-        'id_kelas',
         'nama_barang',
         'stok_min',
         'satuan',
         'harga',
         'stok',
+        'kelas',
 
     ];
 

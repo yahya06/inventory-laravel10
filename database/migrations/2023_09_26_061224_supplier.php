@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('supplier', function (Blueprint $table) {
             $table->id();
             $table->string('nama_supplier')->nullable();
-            $table->enum('jenis_supplier', ['kain', 'aksesorie','perkakas'])->nullable();
+            $table->enum('jenis_supplier', ['kain', 'aksesoris','perkakas'])->nullable();
             $table->string('keterangan')->nullable();
             $table->timestamps();
         });

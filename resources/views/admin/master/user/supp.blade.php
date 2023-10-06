@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-item-center">
-                            <h4 class="card-title">{{ $title }}</h4>
+                            <h4 class="card-title">Data {{ $title }}</h4>
                             <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#modalCreate"><i class="fa fa-plus"></i> Tambah Data</button>
                         </div>
                     </div>
@@ -30,7 +30,9 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Kelas</th>
+                                        <th>Nama Supplyer</th>
+                                        <th>Category Supplyer</th>
+                                        <th>Keterangan</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -38,11 +40,13 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach($dataKelas as $row)
+                                    @foreach($dataSupplyer as $row)
                             
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $row->nama_kelas }}</td>
+                                        <td>{{ $row->nama_supplier }}</td>
+                                        <td>{{ $row->jenis_supplier }}</td>
+                                        <td>{{ $row->keterangan }}</td>
                                         <td>
                                             <a href="#modalEdit{{ $row->id }}" data-toggle="modal" class="btn btn-s btn-primary"><i class="fa fa-edit"> Edit</i></a>
                                             <a href="#modalHapus{{ $row->id }}" data-toggle="modal" class="btn btn-s btn-danger"><i class="fa fa-trash"> Delete</i></a>
@@ -64,16 +68,29 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create {{ $title }}</h5>
+                <h5 class="modal-title">Create Data {{ $title }}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/kelas/store">
+            <form method="POST" action="/supplyer/store">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama Kelas</label>
-                        <input class="form-control" type="text" name="namaKelas" id="" placeholder="Nama Category..." required>
+                        <label>Nama Supplyer</label>
+                        <input class="form-control" type="text" name="nama_supplier" id="" placeholder="Nama Supplyer..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category Supplyer</label>
+                        <select class="form-control" name="jenis_supplier" id="" required>
+                            <option value="" hidden>-- Pilih Category --</option>
+                            <option value="kain">Kain</option>
+                            <option value="aksesoris">Aksesoris</option>
+                            <option value="perkakas">Perkakas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Keterangan</label>
+                        <input class="form-control" type="text" name="keterangan" id="" placeholder="Keterangan Supplyer..." required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -87,21 +104,33 @@
 
 
 <!-- Modal Edit User -->
-@foreach($dataKelas as $d)
+@foreach($dataSupplyer as $d)
 <div class="modal fade" id="modalEdit{{ $d->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit {{ $title }}</h5>
+                <h5 class="modal-title">Edit Data {{ $title }}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/kelas/update/{{ $d->id }}">
+            <form method="POST" action="/supplyer/update/{{ $d->id }}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama Kelas</label>
-                        <input class="form-control" type="text" value="{{ $d->nama_kelas }}" name="namaKelas" id="" placeholder="Nama Category..." required>
+                        <label>Nama Supplyer</label>
+                        <input class="form-control" type="text" value="{{ $d->nama_supplier }}" name="nama_supplier" id="" placeholder="Nama Lengkap..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category Supplyer</label>
+                        <select class="form-control" name="jenis_supplier" id="" required>
+                            <option <?php if( $d['jenis_supplier']=="kain") echo "selected"; ?> value="kain">Kain</option>
+                            <option <?php if( $d['jenis_supplier']=="aksesoris") echo "selected"; ?> value="aksesoris">Aksesoris</option>
+                            <option <?php if( $d['jenis_supplier']=="perkakas") echo "selected"; ?> value="perkakas">Perkakas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Keterangan</label>
+                        <input class="form-control" type="text" value="{{ $d->keterangan }}" name="keterangan" id="" placeholder="Keterangan Supplyer..." >
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -115,19 +144,19 @@
 @endforeach
 
 <!-- Modal Delete User -->
-@foreach($dataKelas as $c)
+@foreach($dataSupplyer as $c)
 <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Delete {{ $title }}</h5>
+                <h5 class="modal-title">Delete Data {{ $title }}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
-            <form method="GET" action="/kelas/destroy/{{ $c->id }}">
+            <form method="GET" action="/supplyer/destroy/{{ $c->id }}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <h5>Apakah anda yakin menghapus kelas ini ?</h5>
+                        <h5>Apakah anda yakin menghapus <u>{{ $c->nama_supplier }}</u> dari data {{ $title }} ?</h5>
                     </div>
                 </div>
                 <div class="modal-footer">
