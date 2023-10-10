@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
             $table->integer('id_category');
+            $table->string('sku')->nullable();
             $table->string('nama_barang')->nullable();
             $table->integer('stok_min')->nullable();
-            $table->enum('satuan', ['Kg','Meter','Gram'])->nullable();
+            $table->enum('satuan', ['Kg','Meter','Gram','Pcs'])->nullable();
             $table->bigInteger('harga')->nullable();
             $table->integer('stok')->nullable();
             $table->enum('kelas',['A','B','C'])->nullable();

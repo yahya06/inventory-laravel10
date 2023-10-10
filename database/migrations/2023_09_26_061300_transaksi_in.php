@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('transaksi_in', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_transaksi_in')->nullable();
             $table->integer('id_supplier')->nullable();
             $table->integer('status')->nullable();
             $table->integer('qty')->nullable();

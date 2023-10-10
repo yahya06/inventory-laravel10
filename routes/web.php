@@ -51,6 +51,12 @@ Route::post('/kategori/store', [barangController::class, 'store_category']);
 Route::post('/kategori/update/{id}', [barangController::class, 'update_category']);
 Route::get('/kategori/destroy/{id}', [barangController::class, 'destroy_category']);
 
+//crud data kategory
+Route::get('/barang', [barangController::class, 'barang']);
+Route::post('/barang/store', [barangController::class, 'store_barang']);
+Route::post('/barang/update/{id}', [barangController::class, 'update_barang']);
+Route::get('/barang/destroy/{id}', [barangController::class, 'destroy_barang']);
+
 //crud data supplyer
 Route::get('/supplyer', [supplyerController::class, 'index']);
 Route::post('/supplyer/store', [supplyerController::class, 'store']);

@@ -13,7 +13,6 @@
         </div>
     </div>
     <!-- row -->
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -30,7 +29,14 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Category</th>
+                                        <th>Kode SKU</th>
+                                        <th>Nama Barang</th>
+                                        <th>Category</th>
+                                        <th>Harga</th>
+                                        <th>Safety Stock</th>
+                                        <th>Stock</th>
+                                        <th>Satuan</th>
+                                        <th>Kelas</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -38,11 +44,19 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach($dataCategory as $row)
+                                    @foreach($dataBarang as $row)
                             
                                     <tr>
                                         <td>{{ $no++ }}</td>
+                                        <td>{{ $row->sku }}</td>
+                                        <td>{{ $row->nama_barang }}</td>
                                         <td>{{ $row->nama_category }}</td>
+                                        <td>Rp. {{ number_format($row->harga) }}</td>
+                                        <td>{{ $row->stok_min }}</td>
+                                        <td>{{ $row->stok }}</td>
+                                        <td>{{ $row->satuan }}</td>
+                                        <td>{{ $row->kelas }}</td>
+
                                         <td>
                                             <a href="#modalEdit{{ $row->id }}" data-toggle="modal" class="btn btn-s btn-primary"><i class="fa fa-edit"> Edit</i></a>
                                             <a href="#modalHapus{{ $row->id }}" data-toggle="modal" class="btn btn-s btn-danger"><i class="fa fa-trash"> Delete</i></a>
@@ -59,7 +73,7 @@
     </div>
 </div>
 
-<!-- Modal Create User -->
+<!-- Modal Create Barang -->
 <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -68,12 +82,60 @@
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/kategori/store">
+            <form method="POST" action="/barang/store">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama Category</label>
-                        <input class="form-control" type="text" name="namaCategory" id="" placeholder="Nama Category..." required>
+                        <label>SKU</label>
+                        <input class="form-control" type="text" name="sku" id="" placeholder="" value="WH-" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Barang</label>
+                        <input class="form-control" type="text" name="nama_barang" id="" placeholder="Nama Barang..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori Barang</label>
+                        <select class="form-control" name="category" id="" required>
+                            <option value="" hidden>-- Pilih Kategori --</option>
+                            @foreach ( $dataCategory as $j )
+                                <option value="{{ $j->id }}">{{ $j->nama_category }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Safety Stock</label>
+                        <input class="form-control" type="number" name="min_stok" id="" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stok</label>
+                        <input class="form-control" type="number" name="stok" id="" placeholder="Nama Barang..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Satuan</label>
+                        <select class="form-control" name="satuan" id="" required>
+                            <option value="" hidden>-- Pilih Satuan --</option>
+                            <option value="Kg">Kg</option>
+                            <option value="Meter">Meter</option>
+                            <option value="Gram">Gram</option>
+                            <option value="Pcs">Pcs</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Harga</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text">Rp. </span>
+                            </div>
+                            <input type="number" class="form-control" name="harga" placeholder="Harga..." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Kelas</label>
+                        <select class="form-control" name="kelas" id="">
+                            <option value="" hidden>-- Pilih Kelas --</option>
+                            <option value="A">Kelas A</option>
+                            <option value="B">Kelas B</option>
+                            <option value="C">Kelas C</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -86,8 +148,8 @@
 </div>
 
 
-<!-- Modal Edit User -->
-@foreach($dataCategory as $d)
+<!-- Modal Edit barang -->
+@foreach($dataBarang as $d)
 <div class="modal fade" id="modalEdit{{ $d->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -96,12 +158,58 @@
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/kategori/update/{{ $d->id }}">
+            <form method="POST" action="/barang/update/{{ $d->id }}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama Category</label>
-                        <input class="form-control" type="text" value="{{ $d->nama_category }}" name="namaCategory" id="" placeholder="Nama Category..." required>
+                        <label>SKU</label>
+                        <input class="form-control" type="text" name="sku" id="" placeholder="" value="{{ $d->sku }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Barang</label>
+                        <input class="form-control" type="text" name="nama_barang" id="" value="{{ $d->nama_barang }}" placeholder="Nama Barang..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori Barang</label>
+                        <select class="form-control" name="category" id="" required>
+                            <option value="{{ $d->category }}">{{ $d->nama_category }}</option>
+                            @foreach ( $dataCategory as $j )
+                                <option value="{{ $j->id }}">{{ $j->nama_category }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Safety Stock</label>
+                        <input class="form-control" type="number" name="min_stok" id="" placeholder="" value="{{ $d->stok_min }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stok</label>
+                        <input class="form-control" type="number" name="stok" id="" placeholder="" value="{{ $d->stok }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Satuan</label>
+                        <select class="form-control" name="satuan" id="" required>
+                            <option <?php if( $d['satuan']=="Kg") echo "selected"; ?> value="Kg">Kg</option>
+                            <option <?php if( $d['satuan']=="Meter") echo "selected"; ?> value="Meter">Meter</option>
+                            <option <?php if( $d['satuan']=="Gram") echo "selected"; ?> value="Gram">Gram</option>
+                            <option <?php if( $d['satuan']=="Pcs") echo "selected"; ?> value="Pcs">Pcs</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Harga</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text">Rp. </span>
+                            </div>
+                            <input type="number" class="form-control" name="harga" placeholder="" value="{{ $d->harga }}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Kelas</label>
+                        <select class="form-control" name="kelas" id="">
+                            <option <?php if( $d['kelas']=="A") echo "selected"; ?> value="A">Kelas A</option>
+                            <option <?php if( $d['kelas']=="B") echo "selected"; ?> value="B">Kelas B</option>
+                            <option <?php if( $d['kelas']=="C") echo "selected"; ?> value="C">Kelas C</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -115,7 +223,7 @@
 @endforeach
 
 <!-- Modal Delete User -->
-@foreach($dataCategory as $c)
+@foreach($dataBarang as $c)
 <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -123,11 +231,11 @@
                 <h5 class="modal-title">Delete {{ $title }}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
-            <form method="GET" action="/kategori/destroy/{{ $c->id }}">
+            <form method="GET" action="/barang/destroy/{{ $c->id }}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <h5>Apakah anda yakin menghapus kategori ini ?</h5>
+                        <h5>Apakah anda yakin menghapus barang {{ $c->nama_barang }} ?</h5>
                     </div>
                 </div>
                 <div class="modal-footer">

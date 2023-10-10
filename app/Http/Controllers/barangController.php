@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\barang;
 use App\Models\categoryBarang;
-use App\Models\kelasBarang;
 use Illuminate\Http\Request;
 
 class barangController extends Controller
@@ -50,21 +49,25 @@ class barangController extends Controller
     {
         $data = array(
             'title' => 'Data Barang',
-            'dataBarang' => barang::all(),
+            'dataCategory' => categoryBarang::all(),
+            'dataBarang' => barang::join('category','category.id', '=', 'barang.id_category')
+                                    ->select('barang.*', 'category.nama_category')
+                                    ->get(),
         );
 
-        return view('admin.master.kelas.kelas' , $data);
+        return view('admin.master.barang.barang' , $data);
     }
     public function store_barang(Request $request)
     {
         $barang=[
-            'id_category',
-            'nama_barang',
-            'stok_min',
-            'satuan',
-            'harga',
-            'stok',
-            'kelas',
+            'id_category' => $request->category,
+            'sku'         => $request->sku,
+            'nama_barang' => $request->nama_barang,
+            'stok_min'    => $request->min_stok,
+            'satuan'      => $request->satuan,
+            'harga'       => $request->harga,
+            'stok'        => $request->stok,
+            'kelas'       => $request->kelas,
         ];
         barang::create($barang);
 
@@ -74,17 +77,17 @@ class barangController extends Controller
     public function update_barang(Request $request, $id)
     {
         $barang=[
-            'id_category',
-            'nama_barang',
-            'stok_min',
-            'satuan',
-            'harga',
-            'stok',
-            'kelas',
+            'id_category' => $request->category,
+            'nama_barang' => $request->nama_barang,
+            'stok_min'    => $request->min_stok,
+            'satuan'      => $request->satuan,
+            'harga'       => $request->harga,
+            'stok'        => $request->stok,
+            'kelas'       => $request->kelas,
         ];
         barang::where('id', $id)
         ->where('id', $id)
-        ->update([$barang]);
+        ->update($barang);
 
         return redirect('barang')->with('success','data berhasil diubah');
     }
