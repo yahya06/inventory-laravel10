@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('barang_out', function (Blueprint $table) {
             $table->id();
+            $table->integer('kode_out');
             $table->integer('id_barang');
             $table->integer('id_customer');
             $table->integer('qty')->nullable();

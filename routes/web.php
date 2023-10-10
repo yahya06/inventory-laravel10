@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\barangController;
+use App\Http\Controllers\barangInController;
 use App\Http\Controllers\customerController;
 use Illuminate\Support\Facades\Route;
 
@@ -69,3 +70,6 @@ Route::get('/customer', [customerController::class, 'index']);
 Route::post('/customer/store', [customerController::class, 'store']);
 Route::post('/customer/update/{id}', [customerController::class, 'update']);
 Route::get('/customer/destroy/{id}', [customerController::class, 'destroy']);
+
+//crud transaksi
+Route::get('/barangin', [barangInController::class, 'index']);
