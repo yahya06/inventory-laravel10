@@ -7,8 +7,8 @@
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">{{ $title }}</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $title }}</a></li>
+                <li class="breadcrumb-item"><a href="">Data Master</a></li>
+                <li class="breadcrumb-item active"><a href="">{{ $title }}</a></li>
             </ol>
         </div>
     </div>
@@ -86,19 +86,19 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Lengkap</label>
-                        <input class="form-control" type="text" name="nama" id="" placeholder="Nama Lengkap..." required>
+                        <input class="form-control input-default" type="text" name="nama" id="" placeholder="Nama Lengkap..." required>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input class="form-control" type="email" name="email" id="" placeholder="Alamat Email..." required>
+                        <input class="form-control input-default" type="email" name="email" id="" placeholder="Alamat Email..." required>
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input class="form-control" type="password" name="password" id="" placeholder="Password..." required>
+                        <input class="form-control input-default" type="password" name="password" id="" placeholder="Password..." required>
                     </div>
                     <div class="form-group">
                         <label>Role</label>
-                        <select class="form-control" name="role" id="" required>
+                        <select class="form-control input-default" name="role" id="" required>
                             <option value="" hidden>-- Pilih Role --</option>
                             <option value="manajer">Manajer</option>
                             <option value="staff">Staff</option>
@@ -130,19 +130,19 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Lengkap</label>
-                        <input class="form-control" type="text" value="{{ $d->name }}" name="nama" id="" placeholder="Nama Lengkap..." required>
+                        <input class="form-control input-default" type="text" value="{{ $d->name }}" name="nama" id="" placeholder="Nama Lengkap..." required>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input class="form-control" type="email" value="{{ $d->email }}" name="email" id="" placeholder="Alamat Email..." required>
+                        <input class="form-control input-default" type="email" value="{{ $d->email }}" name="email" id="" placeholder="Alamat Email..." required>
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input class="form-control" type="password" name="password" id="" placeholder="Password..." required>
+                        <input class="form-control input-default" type="password" name="password" id="" placeholder="Password..." required>
                     </div>
                     <div class="form-group">
                         <label>Role</label>
-                        <select class="form-control" name="role" id="" required>
+                        <select class="form-control input-default" name="role" id="" required>
                             <option <?php if( $d['role']=="manajer") echo "selected"; ?> value="manajer">Manajer</option>
                             <option <?php if( $d['role']=="staff") echo "selected"; ?> value="staff">Staff</option>
                         </select>

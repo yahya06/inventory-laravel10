@@ -7,8 +7,8 @@
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">{{ $title }}</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $title }}</a></li>
+                <li class="breadcrumb-item"><a href="">Data Master</a></li>
+                <li class="breadcrumb-item active"><a href="">{{ $title }}</a></li>
             </ol>
         </div>
     </div>
@@ -85,57 +85,63 @@
             <form method="POST" action="/barang/store">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label>SKU</label>
-                        <input class="form-control" type="text" name="sku" id="" placeholder="" value="WH-" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Nama Barang</label>
-                        <input class="form-control" type="text" name="nama_barang" id="" placeholder="Nama Barang..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Kategori Barang</label>
-                        <select class="form-control" name="category" id="" required>
-                            <option value="" hidden>-- Pilih Kategori --</option>
-                            @foreach ( $dataCategory as $j )
-                                <option value="{{ $j->id }}">{{ $j->nama_category }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Safety Stock</label>
-                        <input class="form-control" type="number" name="min_stok" id="" placeholder="" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Stok</label>
-                        <input class="form-control" type="number" name="stok" id="" placeholder="Nama Barang..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Satuan</label>
-                        <select class="form-control" name="satuan" id="" required>
-                            <option value="" hidden>-- Pilih Satuan --</option>
-                            <option value="Kg">Kg</option>
-                            <option value="Meter">Meter</option>
-                            <option value="Gram">Gram</option>
-                            <option value="Pcs">Pcs</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Harga</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend"><span class="input-group-text">Rp. </span>
-                            </div>
-                            <input type="number" class="form-control" name="harga" placeholder="Harga..." required>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label>SKU</label>
+                            <input class="form-control input-default" type="text" name="sku" id="" placeholder="" value="WH-" required>
+                        </div>
+                        <div class="form-group col-md-9">
+                            <label>Nama Barang</label>
+                            <input class="form-control input-default" type="text" name="nama_barang" id="" placeholder="Nama Barang..." required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Kelas</label>
-                        <select class="form-control" name="kelas" id="">
-                            <option value="" hidden>-- Pilih Kelas --</option>
-                            <option value="A">Kelas A</option>
-                            <option value="B">Kelas B</option>
-                            <option value="C">Kelas C</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Kategori Barang</label>
+                            <select class="form-control input-default" name="category" id="" required>
+                                <option value="" hidden>-- Pilih Kategori --</option>
+                                @foreach ( $dataCategory as $j )
+                                    <option value="{{ $j->id }}">{{ $j->nama_category }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Kelas</label>
+                            <select class="form-control input-default" name="kelas" id="">
+                                <option value="" hidden>-- Pilih Kelas --</option>
+                                <option value="A">Kelas A</option>
+                                <option value="B">Kelas B</option>
+                                <option value="C">Kelas C</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Safety Stock</label>
+                            <input class="form-control input-default" type="number" name="min_stok" id="" placeholder="" value="" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Stok</label>
+                            <input class="form-control  input-default" type="number" name="stok" id="" placeholder="Stok..." required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Satuan</label>
+                            <select class="form-control input-default" name="satuan" id="" required>
+                                <option value="" hidden>-- Pilih Satuan --</option>
+                                <option value="Kg">Kg</option>
+                                <option value="Meter">Meter</option>
+                                <option value="Gram">Gram</option>
+                                <option value="Pcs">Pcs</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label>Harga</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text">Rp. </span>
+                                </div>
+                                <input type="number" class="form-control input-default" name="harga" placeholder="Harga..." required>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -161,55 +167,61 @@
             <form method="POST" action="/barang/update/{{ $d->id }}">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label>SKU</label>
-                        <input class="form-control" type="text" name="sku" id="" placeholder="" value="{{ $d->sku }}" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label>Nama Barang</label>
-                        <input class="form-control" type="text" name="nama_barang" id="" value="{{ $d->nama_barang }}" placeholder="Nama Barang..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Kategori Barang</label>
-                        <select class="form-control" name="category" id="" required>
-                            <option value="{{ $d->category }}">{{ $d->nama_category }}</option>
-                            @foreach ( $dataCategory as $j )
-                                <option value="{{ $j->id }}">{{ $j->nama_category }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Safety Stock</label>
-                        <input class="form-control" type="number" name="min_stok" id="" placeholder="" value="{{ $d->stok_min }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Stok</label>
-                        <input class="form-control" type="number" name="stok" id="" placeholder="" value="{{ $d->stok }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Satuan</label>
-                        <select class="form-control" name="satuan" id="" required>
-                            <option <?php if( $d['satuan']=="Kg") echo "selected"; ?> value="Kg">Kg</option>
-                            <option <?php if( $d['satuan']=="Meter") echo "selected"; ?> value="Meter">Meter</option>
-                            <option <?php if( $d['satuan']=="Gram") echo "selected"; ?> value="Gram">Gram</option>
-                            <option <?php if( $d['satuan']=="Pcs") echo "selected"; ?> value="Pcs">Pcs</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Harga</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend"><span class="input-group-text">Rp. </span>
-                            </div>
-                            <input type="number" class="form-control" name="harga" placeholder="" value="{{ $d->harga }}" required>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label>SKU</label>
+                            <input class="form-control input-default" type="text" name="sku" id="" placeholder="" value="{{ $d->sku }}" readonly>
+                        </div>
+                        <div class="form-group col-md-9">
+                            <label>Nama Barang</label>
+                            <input class="form-control input-default" type="text" name="nama_barang" id="" value="{{ $d->nama_barang }}" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Kelas</label>
-                        <select class="form-control" name="kelas" id="">
-                            <option <?php if( $d['kelas']=="A") echo "selected"; ?> value="A">Kelas A</option>
-                            <option <?php if( $d['kelas']=="B") echo "selected"; ?> value="B">Kelas B</option>
-                            <option <?php if( $d['kelas']=="C") echo "selected"; ?> value="C">Kelas C</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Kategori Barang</label>
+                            <select class="form-control input-default" name="category" id="" required>
+                                <option value="{{ $d->category }}">{{ $d->nama_category }}</option>
+                                @foreach ( $dataCategory as $j )
+                                    <option value="{{ $j->id }}">{{ $j->nama_category }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Kelas</label>
+                            <select class="form-control input-default" name="kelas" id="">
+                                <option <?php if( $d['kelas']=="A") echo "selected"; ?> value="A">Kelas A</option>
+                                <option <?php if( $d['kelas']=="B") echo "selected"; ?> value="B">Kelas B</option>
+                                <option <?php if( $d['kelas']=="C") echo "selected"; ?> value="C">Kelas C</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Safety Stock</label>
+                            <input class="form-control input-default" type="number" name="min_stok" id="" placeholder="" value="{{ $d->stok_min }}" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Stok</label>
+                            <input class="form-control  input-default" type="number" name="stok" id="" value="{{ $d->stok }}" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Satuan</label>
+                            <select class="form-control input-default" name="satuan" id="" required>
+                                <option <?php if( $d['satuan']=="Kg") echo "selected"; ?> value="Kg">Kg</option>
+                                <option <?php if( $d['satuan']=="Meter") echo "selected"; ?> value="Meter">Meter</option>
+                                <option <?php if( $d['satuan']=="Gram") echo "selected"; ?> value="Gram">Gram</option>
+                                <option <?php if( $d['satuan']=="Pcs") echo "selected"; ?> value="Pcs">Pcs</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label>Harga</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text">Rp. </span>
+                                </div>
+                                <input type="number" class="form-control input-default" name="harga" value="{{ $d->harga }}" required>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

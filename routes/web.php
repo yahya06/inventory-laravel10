@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\barangController;
+use App\Http\Controllers\customerController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\homeController;
@@ -62,3 +63,9 @@ Route::get('/supplyer', [supplyerController::class, 'index']);
 Route::post('/supplyer/store', [supplyerController::class, 'store']);
 Route::post('/supplyer/update/{id}', [supplyerController::class, 'update']);
 Route::get('/supplyer/destroy/{id}', [supplyerController::class, 'destroy']);
+
+//crud data supplyer
+Route::get('/customer', [customerController::class, 'index']);
+Route::post('/customer/store', [customerController::class, 'store']);
+Route::post('/customer/update/{id}', [customerController::class, 'update']);
+Route::get('/customer/destroy/{id}', [customerController::class, 'destroy']);

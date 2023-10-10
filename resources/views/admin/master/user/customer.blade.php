@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-item-center">
-                            <h4 class="card-title">{{ $title }}</h4>
+                            <h4 class="card-title">Data {{ $title }}</h4>
                             <button type="button" class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#modalCreate"><i class="fa fa-plus"></i> Tambah Data</button>
                         </div>
                     </div>
@@ -29,20 +29,22 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="width : 50px">No</th>
-                                        <th>Nama Category</th>
-                                        <th style="width : 20%">Action</th>
+                                        <th>No</th>
+                                        <th>Nama Customer</th>
+                                        <th>Keterangan</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach($dataCategory as $row)
+                                    @foreach($dataCustomer as $row)
                             
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $row->nama_category }}</td>
+                                        <td>{{ $row->namacustomer }}</td>
+                                        <td>{{ $row->keterangan }}</td>
                                         <td>
                                             <a href="#modalEdit{{ $row->id }}" data-toggle="modal" class="btn btn-s btn-primary"><i class="fa fa-edit"> Edit</i></a>
                                             <a href="#modalHapus{{ $row->id }}" data-toggle="modal" class="btn btn-s btn-danger"><i class="fa fa-trash"> Delete</i></a>
@@ -64,16 +66,20 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create {{ $title }}</h5>
+                <h5 class="modal-title">Create Data {{ $title }}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/kategori/store">
+            <form method="POST" action="/customer/store">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama Category</label>
-                        <input class="form-control input-default" type="text" name="namaCategory" id="" placeholder="Nama Category..." required>
+                        <label>Nama Customer</label>
+                        <input class="form-control input-default" type="text" name="namaCust" id="" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Keterangan</label>
+                        <input class="form-control input-default" type="text" name="keterangan" id="" placeholder="" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -87,21 +93,25 @@
 
 
 <!-- Modal Edit User -->
-@foreach($dataCategory as $d)
+@foreach($dataCustomer as $d)
 <div class="modal fade" id="modalEdit{{ $d->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit {{ $title }}</h5>
+                <h5 class="modal-title">Edit Data {{ $title }}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/kategori/update/{{ $d->id }}">
+            <form method="POST" action="/customer/update/{{ $d->id }}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama Category</label>
-                        <input class="form-control input-default" type="text" value="{{ $d->nama_category }}" name="namaCategory" id="" placeholder="Nama Category..." required>
+                        <label>Nama Customer</label>
+                        <input class="form-control input-default" type="text" value="{{ $d->namacustomer }}" name="namaCust" id="" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Keterangan</label>
+                        <input class="form-control input-default" type="text" value="{{ $d->keterangan }}" name="keterangan" id="">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -115,19 +125,19 @@
 @endforeach
 
 <!-- Modal Delete User -->
-@foreach($dataCategory as $c)
+@foreach($dataCustomer as $c)
 <div class="modal fade" id="modalHapus{{ $c->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Delete {{ $title }}</h5>
+                <h5 class="modal-title">Delete Data {{ $title }}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
-            <form method="GET" action="/kategori/destroy/{{ $c->id }}">
+            <form method="GET" action="/customer/destroy/{{ $c->id }}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <h5>Apakah anda yakin menghapus kategori ini ?</h5>
+                        <h5>Apakah anda yakin menghapus <u>{{ $c->namaCust }}</u> dari data {{ $title }} ?</h5>
                     </div>
                 </div>
                 <div class="modal-footer">

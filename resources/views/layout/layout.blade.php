@@ -194,8 +194,9 @@
                         <ul aria-expanded="false">
                             <li><a href="/barang">Data Barang</a></li>
                             <li><a href="/kategori">Data Category</a></li>
+                            <li><a href="/customer">Data Customer</a></li>
                             <li><a href="/user">Data User</a></li>
-                            <li><a href="/supplyer">Data Suplier</a></li>
+                            <li><a href="/supplyer">Data Supplyer</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Transaksi</li>
@@ -226,7 +227,9 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/barang">Data Barang</a></li>
-                            <li><a href="/supplyer">Data Suplier</a></li>
+                            <li><a href="/kategori">Data Category</a></li>
+                            <li><a href="/supplyer">Data Supplyer</a></li>
+                            <li><a href="/customer">Data Customer</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Transaksi</li>

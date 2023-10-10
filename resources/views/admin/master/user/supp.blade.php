@@ -7,8 +7,8 @@
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">{{ $title }}</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $title }}</a></li>
+                <li class="breadcrumb-item"><a href="">Data Master</a></li>
+                <li class="breadcrumb-item active"><a href="">{{ $title }}</a></li>
             </ol>
         </div>
     </div>
@@ -77,11 +77,11 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Supplyer</label>
-                        <input class="form-control" type="text" name="nama_supplier" id="" placeholder="Nama Supplyer..." required>
+                        <input class="form-control input-default" type="text" name="nama_supplier" id="" placeholder="Nama Supplyer..." required>
                     </div>
                     <div class="form-group">
                         <label>Category Supplyer</label>
-                        <select class="form-control" name="jenis_supplier" id="" required>
+                        <select class="form-control input-default" name="jenis_supplier" id="" required>
                             <option value="" hidden>-- Pilih Category --</option>
                             <option value="kain">Kain</option>
                             <option value="aksesoris">Aksesoris</option>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="form-group">
                         <label>Keterangan</label>
-                        <input class="form-control" type="text" name="keterangan" id="" placeholder="Keterangan Supplyer..." required>
+                        <input class="form-control input-default" type="text" name="keterangan" id="" placeholder="Keterangan Supplyer..." required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -118,11 +118,11 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Supplyer</label>
-                        <input class="form-control" type="text" value="{{ $d->nama_supplier }}" name="nama_supplier" id="" placeholder="Nama Lengkap..." required>
+                        <input class="form-control input-default" type="text" value="{{ $d->nama_supplier }}" name="nama_supplier" id="" placeholder="Nama Lengkap..." required>
                     </div>
                     <div class="form-group">
                         <label>Category Supplyer</label>
-                        <select class="form-control" name="jenis_supplier" id="" required>
+                        <select class="form-control input-default" name="jenis_supplier" id="" required>
                             <option <?php if( $d['jenis_supplier']=="kain") echo "selected"; ?> value="kain">Kain</option>
                             <option <?php if( $d['jenis_supplier']=="aksesoris") echo "selected"; ?> value="aksesoris">Aksesoris</option>
                             <option <?php if( $d['jenis_supplier']=="perkakas") echo "selected"; ?> value="perkakas">Perkakas</option>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="form-group">
                         <label>Keterangan</label>
-                        <input class="form-control" type="text" value="{{ $d->keterangan }}" name="keterangan" id="" placeholder="Keterangan Supplyer..." >
+                        <input class="form-control input-default" type="text" value="{{ $d->keterangan }}" name="keterangan" id="" placeholder="Keterangan Supplyer..." >
                     </div>
                 </div>
                 <div class="modal-footer">
